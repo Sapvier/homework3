@@ -13,7 +13,12 @@ export class MyArray {
         this.arrayObj[length + 1] = item
         return this.getLength(this.arrayObj)
     }
-
+    pop() {
+        let length = this.getLength(this.arrayObj)
+        let lastItem = this.arrayObj[length]
+        delete this.arrayObj[length]
+        return lastItem
+    }
 
     getLength(array) {
         let length = -1
