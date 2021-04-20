@@ -1,9 +1,26 @@
 export class MyArray {
-    constructor(...array) {
-        this.array = array
+    constructor(...args) {
+        this.arrayObj = {}
+        let index = 0
+        args.forEach(argument => {
+            this.arrayObj[index] = argument
+            index++
+        })
     }
-    static push(item) {
-        this.array = [...this.array, item]
-        return this.array.length + 1
+
+    push(item) {
+        let length = this.getLength(this.arrayObj)
+        this.arrayObj[length + 1] = item
+        return this.getLength(this.arrayObj)
+    }
+
+
+    getLength(array) {
+        let length = -1
+        for (const item in array) {
+            length++
+        }
+        return length;
     }
 }
+
