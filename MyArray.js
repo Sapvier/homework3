@@ -50,22 +50,31 @@ export class MyArray {
         }
         return accumulator
     }
+
     myFilter(func) {
         let index = 0
         let newArrayObj = {}
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
         for (let item in this) {
-           if (func(this[item])) {
-               newArrayObj[index] = this[item]
-               index++
-           }
+            if (func(this[item])) {
+                newArrayObj[index] = this[item]
+                index++
+            }
         }
         return newArrayObj
     }
+
     mySort(func) {
         let comparator = func || this.defaultComparator()
-        if (typeof func !== 'function') throw new Error(`${func} is not a function`)
+        // if (typeof func !== 'function') throw new Error(`${func} is not a function`)
         return this
+    }
+    myToString() {
+        let string = ''
+        for (let item in this) {
+            (item === '0') ? string += this[item] : string += "," + this[item]
+        }
+        return string
     }
 
     getLength(array) {
@@ -75,11 +84,18 @@ export class MyArray {
         }
         return length;
     }
-    defaultComparator() {
-        if (this.getLength(this) < 2) return this;
-        let pivot = this[0];
+
+    defaultComparator(obj) {
+        if (this.getLength(obj) < 2) return obj;
+        let pivot = obj[0] + "";
         const left = {};
         const right = {};
+
+        for (let i = 1; i < this.getLength(obj); i++) {
+            if ((obj[i] + "") < pivot) left[i] = obj[i];
+            else right[i] = obj[i];
+        }
+        return Object.assign({}, this.defaultComparator(left), this.defaultComparator(right))
 
     }
 }

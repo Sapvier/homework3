@@ -1,6 +1,6 @@
 import {MyArray} from "./MyArray.js";
 
-const arr = new MyArray({name: 'Paul'}, {name: "Jean"} , {name: 'Misha'});
+const arr = new MyArray(1, 3 , [1, 2], {name: "Misha"});
 
-arr.mySort()
-console.log(arr)
+
+console.log((arr.myToString()))
