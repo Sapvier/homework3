@@ -33,7 +33,9 @@ export class MyArray {
     }
 
     myForEach(func) {
+        //forEach
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
+
         for (let item in this) {
             this[item] = func(this[item], item)
         }
