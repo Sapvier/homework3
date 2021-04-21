@@ -1,6 +1,10 @@
 import {MyArray} from "./MyArray.js";
 
-const arr = new MyArray(1, 3 , [1, 2], {name: "Misha"});
+const arr = new MyArray(1, 3, 10000, 30);
 
+function sorty() {
 
-console.log((arr.myToString()))
+}
+let a = "ggr"
+
+console.log(arr.mySort(sorty))

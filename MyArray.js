@@ -15,7 +15,7 @@ export class MyArray {
 
     myPop() {
         let length = this.getLength(this)
-        let lastItem = this[length]
+        let lastItem = this[length] - 1
         delete this[length]
         return lastItem
     }
@@ -65,10 +65,15 @@ export class MyArray {
     }
 
     mySort(func) {
-        let comparator = func || this.defaultComparator()
-        // if (typeof func !== 'function') throw new Error(`${func} is not a function`)
-        return this
+        if (func === undefined) {
+            return this.defaultComparator()
+        }
+        else if (typeof func !== 'function') {
+            throw new Error(`${func} is not a function`)
+        }
+        else return func(this)
     }
+
     myToString() {
         let string = ''
         for (let item in this) {
@@ -76,27 +81,50 @@ export class MyArray {
         }
         return string
     }
+    // myFrom(arrayLike, func) {
+    //     // if (typeof func !== 'function') throw new Error(`${func} is not a function`)
+    //     let newObj = {}
+    //     let i = 0
+    //     for (let item in arrayLike) {
+    //         arrayLike[i] = newObj[item]
+    //         console.log()
+    //         i++
+    //     }
+    //     let index = 0
+    //     let newArrayObj = {}
+    //     for (let item in newObj) {
+    //         newArrayObj[index] = func(newObj[item])
+    //         index++
+    //     }
+    //     return newArrayObj
+    // }
 
-    getLength(array) {
-        let length = -1
-        for (const item in array) {
+    getLength(obj) {
+        let length = 0
+        for (const item in obj) {
             length++
         }
         return length;
     }
 
-    defaultComparator(obj) {
-        if (this.getLength(obj) < 2) return obj;
-        let pivot = obj[0] + "";
-        const left = {};
-        const right = {};
-
-        for (let i = 1; i < this.getLength(obj); i++) {
-            if ((obj[i] + "") < pivot) left[i] = obj[i];
-            else right[i] = obj[i];
+    defaultComparator() {
+        let n = this.getLength(this), i = 1, j = 2;
+        while (i < n) {
+            if (this[i-1] + "" < this[ i ] + "") {
+                i = j; j++;
+            }
+            else {
+                let t = this[i-1];
+                this[i-1] = this[ i ];
+                this[ i ] = t;
+                i--;
+                    if (i === 0) {
+                        i = j;
+                        j++;
+                    }
+            }
         }
-        return Object.assign({}, this.defaultComparator(left), this.defaultComparator(right))
-
+        return this;
     }
 }
 
