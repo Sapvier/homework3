@@ -23,7 +23,7 @@ export class MyArray {
     myMap(func) {
         let index = 0
         let newArrayObj = {}
-        if (typeof func !== 'function') throw new Error('Please add function')
+        if (typeof func !== 'function') throw new Error(`${func} is not a function`)
         for (let item in this) {
             newArrayObj[index] = func(this[item])
             index++
@@ -32,7 +32,7 @@ export class MyArray {
     }
 
     myForEach(func) {
-        if (typeof func !== 'function') throw new Error('Please add function')
+        if (typeof func !== 'function') throw new Error(`${func} is not a function`)
         for (let item in this) {
             this[item] = func(this[item], item)
         }
@@ -40,13 +40,29 @@ export class MyArray {
 
     myReduce(func, initialValue) {
         let accumulator = initialValue || 0
-
-        if (typeof func !== 'function') throw new Error('Please add function')
+        if (typeof func !== 'function') throw new Error(`${func} is not a function`)
 
         for (let item in this) {
             accumulator = func(accumulator, this[item], item, this)
         }
         return accumulator
+    }
+    myFilter(func) {
+        let index = 0
+        let newArrayObj = {}
+        if (typeof func !== 'function') throw new Error(`${func} is not a function`)
+        for (let item in this) {
+           if (func(this[item])) {
+               newArrayObj[index] = this[item]
+               index++
+           }
+        }
+        return newArrayObj
+    }
+    mySort(func) {
+        let comparator = func || this.defaultComparator()
+        if (typeof func !== 'function') throw new Error(`${func} is not a function`)
+        return this
     }
 
     getLength(array) {
@@ -55,6 +71,13 @@ export class MyArray {
             length++
         }
         return length;
+    }
+    defaultComparator() {
+        if (this.length < 2) return arr;
+        let pivot = this[0];
+        const left = {};
+        const right = {};
+
     }
 }
 

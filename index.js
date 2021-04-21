@@ -1,9 +1,6 @@
 import {MyArray} from "./MyArray.js";
 
-const arr = new MyArray(1, 4, [2,4]);
+const arr = new MyArray({name: 'Paul'}, {name: "Jean"} , {name: 'Misha'});
 
-
-const reducer = (accumulator, currentValue) => [...accumulator, currentValue];
-
-console.log(arr.myReduce(reducer, []))
-
+arr.mySort()
+console.log(arr)
