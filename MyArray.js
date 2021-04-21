@@ -21,6 +21,7 @@ export class MyArray {
     }
 
     myMap(func) {
+        //map
         let index = 0
         let newArrayObj = {}
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
@@ -73,7 +74,7 @@ export class MyArray {
         return length;
     }
     defaultComparator() {
-        if (this.length < 2) return arr;
+        if (this.getLength(this) < 2) return this;
         let pivot = this[0];
         const left = {};
         const right = {};
