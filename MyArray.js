@@ -96,6 +96,12 @@ export class MyArray {
         return newObj
     }
 
+    *[Symbol.iterator] () {
+        for (let item in this) {
+            yield this[item]
+        }
+    }
+
     getLength(obj) {
         let length = 0
         for (const item in obj) {
