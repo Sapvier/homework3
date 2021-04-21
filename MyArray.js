@@ -15,8 +15,8 @@ export class MyArray {
 
     myPop() {
         let length = this.getLength(this)
-        let lastItem = this[length] - 1
-        delete this[length]
+        let lastItem = this[length - 1]
+        delete this[length - 1]
         return lastItem
     }
 
