@@ -21,7 +21,6 @@ export class MyArray {
     }
 
     myMap(func) {
-        //map
         let index = 0
         let newArrayObj = {}
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
@@ -33,7 +32,6 @@ export class MyArray {
     }
 
     myForEach(func) {
-        //forEach
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
 
         for (let item in this) {
@@ -81,23 +79,22 @@ export class MyArray {
         }
         return string
     }
-    // myFrom(arrayLike, func) {
-    //     // if (typeof func !== 'function') throw new Error(`${func} is not a function`)
-    //     let newObj = {}
-    //     let i = 0
-    //     for (let item in arrayLike) {
-    //         arrayLike[i] = newObj[item]
-    //         console.log()
-    //         i++
-    //     }
-    //     let index = 0
-    //     let newArrayObj = {}
-    //     for (let item in newObj) {
-    //         newArrayObj[index] = func(newObj[item])
-    //         index++
-    //     }
-    //     return newArrayObj
-    // }
+
+    myFrom(arrayLike, func) {
+        let newObj = {}
+        let i = 0
+        for (let item in arrayLike) {
+            if (func === undefined) {
+                newObj[i] = this.defaultFunction(arrayLike[item])
+                i++
+            }
+            else if (typeof func !== 'function') {
+                throw new Error(`${func} is not a function`)
+            }
+            else newObj[i] = func(arrayLike[item]); i++
+        }
+        return newObj
+    }
 
     getLength(obj) {
         let length = 0
@@ -125,6 +122,9 @@ export class MyArray {
             }
         }
         return this;
+    }
+    defaultFunction(item) {
+        return item
     }
 }
 
