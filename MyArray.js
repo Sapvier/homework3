@@ -15,27 +15,27 @@ export class MyArray {
             length++
         });
 
-        Object.assign(this, itemsObj)
+        Object.assign(this, itemsObj);
 
         return length;
     }
 
     myPop() {
-        let length = this.getLength(this)
-        let lastItem = this[length - 1]
+        let length = this.getLength(this);
+        let lastItem = this[length - 1];
         delete this[length - 1]
-        return this.getLength(this)
+        return this.getLength(this);
     }
 
     myMap(func) {
-        let index = 0
-        let newArrayObj = {}
+        let index = 0;
+        let newArrayObj = {};
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
         for (let item in this) {
             newArrayObj[index] = func(this[item])
             index++
         }
-        return newArrayObj
+        return newArrayObj;
     }
 
     myForEach(func) {
@@ -47,18 +47,18 @@ export class MyArray {
     }
 
     myReduce(func, initialValue) {
-        let accumulator = initialValue || 0
+        let accumulator = initialValue || 0;
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
 
         for (let item in this) {
             accumulator = func(accumulator, this[item], item, this)
         }
-        return accumulator
+        return accumulator;
     }
 
     myFilter(func) {
-        let index = 0
-        let newArrayObj = {}
+        let index = 0;
+        let newArrayObj = {};
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
         for (let item in this) {
             if (func(this[item])) {
@@ -66,7 +66,7 @@ export class MyArray {
                 index++
             }
         }
-        return newArrayObj
+        return newArrayObj;
     }
 
     mySort(func) {
@@ -76,15 +76,15 @@ export class MyArray {
         else if (typeof func !== 'function') {
             throw new Error(`${func} is not a function`)
         }
-        else return func(this)
+        else return func(this);
     }
 
     myToString() {
-        let string = ''
+        let string = '';
         for (let item in this) {
             (item === '0') ? string += this[item] : string += "," + this[item]
         }
-        return string
+        return string;
     }
 
     myFrom(arrayLike, func) {
@@ -102,7 +102,7 @@ export class MyArray {
                 newObj[i] = func(arrayLike[item]);
                 i++
             }
-            
+
         }
         return newObj;
     }
@@ -114,7 +114,7 @@ export class MyArray {
     }
 
     getLength(obj) {
-        let length = 0
+        let length = 0;
         for (const item in obj) {
             length++
         }
@@ -141,7 +141,7 @@ export class MyArray {
         return this;
     }
     defaultFunction(item) {
-        return item
+        return item;
     }
 }
 
