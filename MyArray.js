@@ -1,23 +1,30 @@
 export class MyArray {
     constructor(...args) {
-        let index = 0
+        let index = 0;
         args.forEach(argument => {
             this[index] = argument
             index++
-        })
+        });
     }
 
-    myPush(item) {
-        let length = this.getLength(this)
-        this[length + 1] = item
-        return this.getLength(this)
+    myPush(...items) {
+        let itemsObj = {};
+        let length = this.getLength(this);
+        items.forEach(argument => {
+            itemsObj[length] = argument
+            length++
+        });
+
+        Object.assign(this, itemsObj)
+
+        return length;
     }
 
     myPop() {
         let length = this.getLength(this)
         let lastItem = this[length - 1]
         delete this[length - 1]
-        return lastItem
+        return this.getLength(this)
     }
 
     myMap(func) {
