@@ -88,8 +88,8 @@ export class MyArray {
     }
 
     myFrom(arrayLike, func) {
-        let newObj = {}
-        let i = 0
+        let newObj = {};
+        let i = 0;
         for (let item in arrayLike) {
             if (func === undefined) {
                 newObj[i] = this.defaultFunction(arrayLike[item])
@@ -98,9 +98,13 @@ export class MyArray {
             else if (typeof func !== 'function') {
                 throw new Error(`${func} is not a function`)
             }
-            else newObj[i] = func(arrayLike[item]); i++
+            else {
+                newObj[i] = func(arrayLike[item]);
+                i++
+            }
+            
         }
-        return newObj
+        return newObj;
     }
 
     *[Symbol.iterator] () {
