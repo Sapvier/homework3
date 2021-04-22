@@ -42,7 +42,7 @@ export class MyArray {
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
 
         for (let item in this) {
-            this[item] = func(this[item], item)
+            this[item] = func(this[item], item, this)
         }
     }
 
