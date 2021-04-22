@@ -1,6 +1,6 @@
 import {MyArray} from "./MyArray.js";
 
-const arr = new MyArray(1, 3, 10000, 30,1, 3 ,4, 555);
+const arr = new MyArray(1, 3, 5);
 
-
-console.log(arr.getLength(arr))
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+console.log(arr.myReduce(reducer))

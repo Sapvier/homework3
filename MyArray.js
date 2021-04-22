@@ -47,11 +47,12 @@ export class MyArray {
     }
 
     myReduce(func, initialValue) {
-        let accumulator = initialValue || 0;
+        let accumulator = initialValue || this[0];
+        let index = initialValue === undefined ? 1 : 0;
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
 
-        for (let item in this) {
-            accumulator = func(accumulator, this[item], item, this)
+        for (; index < this.getLength(this); index++) {
+            accumulator = func(accumulator, this[index], index, this)
         }
         return accumulator;
     }
