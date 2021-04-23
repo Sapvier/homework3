@@ -3,7 +3,7 @@ export class MyArray {
         let index = 0;
         args.forEach(argument => {
             this[index] = argument
-            index++
+            index++;
         });
     }
 
@@ -12,7 +12,7 @@ export class MyArray {
         let length = this.getLength(this);
         items.forEach(argument => {
             itemsObj[length] = argument
-            length++
+            length++;
         });
 
         Object.assign(this, itemsObj);
@@ -33,7 +33,7 @@ export class MyArray {
         if (typeof func !== 'function') throw new Error(`${func} is not a function`)
         for (let item in this) {
             newArrayObj[index] = func(this[item])
-            index++
+            index++;
         }
         return newArrayObj;
     }
@@ -64,7 +64,7 @@ export class MyArray {
         for (let item in this) {
             if (func(this[item])) {
                 newArrayObj[index] = this[item]
-                index++
+                index++;
             }
         }
         return newArrayObj;
@@ -94,14 +94,14 @@ export class MyArray {
         for (let item in arrayLike) {
             if (func === undefined) {
                 newObj[i] = this.defaultFunction(arrayLike[item])
-                i++
+                i++;
             }
             else if (typeof func !== 'function') {
                 throw new Error(`${func} is not a function`)
             }
             else {
                 newObj[i] = func(arrayLike[item]);
-                i++
+                i++;
             }
 
         }
@@ -117,7 +117,7 @@ export class MyArray {
     getLength(obj) {
         let length = 0;
         for (const item in obj) {
-            length++
+            length++;
         }
         return length;
     }
@@ -126,7 +126,8 @@ export class MyArray {
         let n = this.getLength(this), i = 1, j = 2;
         while (i < n) {
             if (this[i-1] + "" < this[ i ] + "") {
-                i = j; j++;
+                i = j;
+                j++;
             }
             else {
                 let t = this[i-1];
